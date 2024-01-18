@@ -97,7 +97,7 @@ const EventForm = ({ userId, type }: EventFormProps) => {
                             <FormItem className="w-full">
                                 <FormControl className="h-72">
                                    <FileUpload/>
-                                </For mControl>
+                                </FormControl>
                                 <FormMessage />
                             </FormItem>
                         )}
