@@ -5,6 +5,8 @@ const MONGODB_URI = process.env.MONGODB_URI;
 
 let cached = (global as any).mongoose || {conn: null, promise: null};
 
+
+
 export const connectToDatabase = async () => {
     if(cached.conn) return cached.connect;
 
@@ -15,6 +17,7 @@ export const connectToDatabase = async () => {
         bufferCommands: false,
     })
 
+    console.log("doing something")
     cached.conn = await cached.promise;
 
     return cached.conn;
