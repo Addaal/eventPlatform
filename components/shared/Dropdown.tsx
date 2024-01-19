@@ -48,6 +48,7 @@ type DropdownProps = {
             const categoryList = await getAllCategories();
             categoryList && setCategories(categoryList as ICateogory[])
         }
+        getCategories();
     },[])
     return (
 

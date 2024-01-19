@@ -5,6 +5,8 @@ import { auth } from "@clerk/nextjs";
 
     const {sessionClaims} = auth();
     const userId = sessionClaims?.userId as string;
+    console.log("aquiii")
+    console.log(userId);
 
   return (
     <>
