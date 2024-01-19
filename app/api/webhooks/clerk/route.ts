@@ -4,7 +4,7 @@ import { WebhookEvent } from '@clerk/nextjs/server'
 import { createUser, deleteUser, updateUser } from '@/lib/actions/user.actions'
 import { clerkClient } from '@clerk/nextjs'
 import { NextResponse } from 'next/server'
- 
+
 export async function POST(req: Request) {
  
   // You can find this in the Clerk Dashboard -> Webhooks -> choose the webhook
@@ -53,8 +53,10 @@ export async function POST(req: Request) {
   // Get the ID and type
   const { id } = evt.data;
   const eventType = evt.type;
+  
  
   if(eventType === 'user.created') {
+    console.log("webhook")
     const { id, email_addresses, image_url, first_name, last_name, username } = evt.data;
 
     const user = {
@@ -80,6 +82,8 @@ export async function POST(req: Request) {
   }
 
   if (eventType === 'user.updated') {
+
+    console.log("webhook")
     const {id, image_url, first_name, last_name, username } = evt.data
 
     const user = {
