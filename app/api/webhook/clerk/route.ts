@@ -129,6 +129,6 @@ export async function POST(request: Request) {
 }
 
 export async function GET(message : any) {
-  return Response.json({ message});
+  return Response.json(JSON.stringify(message));
 }
 
