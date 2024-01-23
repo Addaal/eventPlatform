@@ -4,7 +4,7 @@ import { auth } from "@clerk/nextjs";
  const CreateEvent = () => {
 
     const {sessionClaims} = auth();
-    console.log(sessionClaims);
+    
 
     const userId = sessionClaims?.userId as string;
     console.log("aquiii2")
