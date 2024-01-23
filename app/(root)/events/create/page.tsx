@@ -6,7 +6,7 @@ import { auth } from "@clerk/nextjs";
     const {sessionClaims} = auth();
     console.log(sessionClaims);
 
-    const userId = sessionClaims?.userId as string;
+    const userId = sessionClaims?.publicMetadata.userId as string;
     console.log("aquiii2")
     console.log(userId);
 
