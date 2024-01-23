@@ -8,7 +8,7 @@ import React from 'react'
 const ProfilePage = async () => {
 
     const {sessionClaims} = auth();
-    const userId= sessionClaims?.publicMetadata.userId as string;
+    const userId= sessionClaims?.userId as string;
 
     const organizedEvents = await getEventsByUser({userId, page: 1});
 

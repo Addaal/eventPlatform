@@ -12,7 +12,7 @@ type UpdateEventProps = {
 const UpdateEvent = async ({ params: { id } }: UpdateEventProps) => {
 
   const { sessionClaims } = auth();
-  const userId = sessionClaims?.publicMetadata.userId as string;
+  const userId = sessionClaims?.userId as string;
 
   const event = await getEventById(id);
   return (
