@@ -2,20 +2,22 @@
 import React from 'react'
 import { Button } from '../ui/button'
 import { IEvent } from '@/lib/database/models/event.model'
-import { PayPalButtons, PayPalScriptProvider } from '@paypal/react-paypal-js';
+//import { PayPalButtons, PayPalScriptProvider } from '@paypal/react-paypal-js';
 import { loadStripe } from '@stripe/stripe-js';
 import { checkoutOrder } from '@/lib/actions/order.action';
-
+import { useRouter } from 'next/navigation';
 loadStripe(
     process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!
-);
-
-
-const Checkout = ({ event, userId }: { event: IEvent, userId: string }) => {
-
-
-    React.useEffect(() => {
-        // Check to see if this is a redirect back from Checkout
+    );
+    
+    
+    const Checkout = ({ event, userId }: { event: IEvent, userId: string }) => {
+    
+        
+        
+        const router = useRouter();
+        React.useEffect(() => {
+            // Check to see if this is a redirect back from Checkout
         const query = new URLSearchParams(window.location.search);
         if (query.get('success')) {
             console.log('Order placed! You will receive an email confirmation.');
@@ -28,14 +30,17 @@ const Checkout = ({ event, userId }: { event: IEvent, userId: string }) => {
 
     const onCheckout = async () => {
         const order = {
-            eventTitle : event.title,
+            eventTitle: event.title,
             eventId: event._id,
             price: event.price,
             isFree: event.isFree,
-            buyerId:  userId
+            buyerId: userId
         }
         console.log("buyerId" + userId);
-        await checkoutOrder(order);
+        const checkoutResponse = await checkoutOrder(order);
+        console.log(checkoutResponse);
+
+        router.push(checkoutResponse!);
     }
 
     return (
